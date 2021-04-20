@@ -42,6 +42,51 @@ function DrawBargraph(sampleId) {
 
 function DrawBubblechart(sampleId) {
   console.log(`DrawBubblechart(${sampleId})`);
+  d3.json("data/samples.json").then(data => {
+    // console.log(data);
+
+    var samples = data.samples;
+    var resultArray = samples.filter(s => s.id == sampleId);
+    // console.log(resultArray);
+    var result = resultArray[0];
+    // console.log(result);
+
+    var otu_ids = result.otu_ids;
+    var otu_labels = result.otu_labels;
+    var sample_values = result.sample_values;
+    // console.log(sample_values);
+
+    var desired_max_marker_size = 40;
+    var size = [900, 1075, 1250, 1425, 1601];
+
+    var bubbleData = {
+      x: otu_ids,
+      y: sample_values,
+      // text: ['otu_labels'],
+      mode: 'markers',
+      marker: {
+        color: ['otu_ids'],
+        size: size,
+        sizeref: 2.0 * Math.max(otu_ids.length)/(desired_max_marker_size **2),
+        sizemode: 'area'
+      }
+ 
+    };
+
+    var bubbleArray = [bubbleData];
+
+    var bubbleLayout = {
+      title: 'Bubble Diversity by OTU IDs',
+      xaxis: {
+        title: 'OTU ID',
+      },
+      showlegend: false,
+      height: 600,
+      width: 1200
+    };
+    
+    Plotly.newPlot("bubble", bubbleArray, bubbleLayout)
+  });
 }
 
 function optionChanged(newSampleId) {
