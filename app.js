@@ -1,28 +1,32 @@
+console.log("app.js loaded!");
+
+// The code in these files is based on Dom's description in office hours.
+
+function InitDashboard() {
+  console.log("InitDashboard()");
+
+  // Update the dropdown
+  var selector = d3.select("#selDataset");
+
+  d3.json("data/samples.json").then((importedData) => {
+    console.log(importedData);
+    var data = importedData;
+  });
+
+}
+InitDashboard();
+
+
+
+  // Update the bargraph
+  // Update the bubblechart
+  // Update the demographic information
+
 // Use d3.json() to fetch data from JSON file
 // Incoming data is internally referred to as importedData
-d3.json("data/samples.json").then((importedData) => {
-  console.log(importedData);
-  var data = importedData;
 
-    // // Grab values from the response json object to build the plots
-    var sampleFilter = data.names.samples
-    // var otu_ids = data.samples.otu_ids;
-    // var sample_values = data.samples.sample_values;
-    // var otu_labels = data.samples.otu_labels;
+
  
-    // // Print the names of the columns
-    console.log(data.samples);
-    // // Print the data for each day
-    // // console.log(otu_ids);
-    // // var dates = data.dataset.data.map(row => row[0]);
-    // // // console.log(dates);
-    // var otus = data.names.map(row => row[4]);
-    // console.log(otus);
-    // for (var i = 0; i < samples.length; i++) {
-    // console.log(samples[i]);
-    // console.log("PAIR " + i + ": " + obj[i].cid);
-    // }
-
   // Trace1 for the otu_ids data
   // var trace1 = {
   //   x: data.map(row => row.otu_ids),
@@ -49,5 +53,5 @@ d3.json("data/samples.json").then((importedData) => {
 
   // // Render the plot to the div tag with id "plot"
   // Plotly.newPlot("bar", chartData, layout);
-});
+
   
