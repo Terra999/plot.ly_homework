@@ -10,7 +10,15 @@ function InitDashboard() {
 
   d3.json("data/samples.json").then((importedData) => {
     console.log(importedData);
-    var data = importedData;
+      
+    var sampleNames = importedData.names;
+
+    sampleNames.forEach(sampleId => {
+      selector.append("option")
+        .text(sampleId)
+        .property("value", sampleId);
+
+    });
   });
 
 }
