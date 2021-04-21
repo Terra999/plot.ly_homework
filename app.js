@@ -153,6 +153,7 @@ function InitDashboard() {
 }
 InitDashboard();
 
+// Create the gauge for washing frequency
 function showGauge(washingFreq) {
   // console.log("showGauge");
   var data = [
@@ -160,27 +161,27 @@ function showGauge(washingFreq) {
       type: "indicator",
       mode: "gauge+number",
       value: washingFreq,
-      title: { text: "Speed", font: { size: 24 } },
-      delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
+      title: {text: "Belly Button Washing Frequency", font: {size: 24}},
+      delta: {reference: 400, increasing: {color: "RebeccaPurple"}},
       gauge: {
-        axis: { range: [null, 9], tickwidth: 1, tickcolor: "darkblue" },
-        bar: { color: "darkblue" },
+        axis: {range: [null, 9], tickwidth: 1, tickcolor: "darkblue"},
+        bar: {color: "darkblue"},
         bgcolor: "white",
         borderwidth: 2,
         bordercolor: "gray",
         steps: [
-          { range: [0, 1], color: "rgba(51, 153, 102, .5)"},
-          { range: [1, 2], rbga: "royalblue" },
-          { range: [2, 3], rbga: "royalblue" },
-          { range: [3, 4], rbga: "royalblue" },
-          { range: [4, 5], color: "royalblue" },
-          { range: [5, 6], color: "royalblue" },
-          { range: [6, 7], color: "royalblue" },
-          { range: [7, 8], color: "royalblue" },
-          { range: [8, 9], color: "royalblue" },
+          {range: [0, 1], color: "rgba(255, 248, 220, .5)"},
+          {range: [1, 2], color: "rgba(255, 228, 196, .5)"},
+          {range: [2, 3], color: "rgba(222, 184, 135, .5)"},
+          {range: [3, 4], color: "rgba(188, 143, 143, .5)"},
+          {range: [4, 5], color: "rgba(244, 164, 96, .5)"},
+          {range: [5, 6], color: "rgba(218, 165, 32, .5)"},
+          {range: [6, 7], color: "rgba(184, 134, 11, .5)" },
+          {range: [7, 8], color: "rgba(205, 133, 63, .5)" },
+          {range: [8, 9], color: "rgba(210, 105, 30, .5)" },
         ],
         threshold: {
-          line: { color: "red", width: 4 },
+          line: {color: "red", width: 4},
           thickness: 0.75,
           value: 490
         }
@@ -189,10 +190,10 @@ function showGauge(washingFreq) {
   ];
 
   var layout = {
-    width: 500,
-    height: 400,
+    width: 400,
+    height: 300,
     margin: { t: 25, r: 25, l: 25, b: 25 },
-    paper_bgcolor: "lavender",
+    paper_bgcolor: "white",
     font: { color: "darkblue", family: "Arial" }
   };
 
