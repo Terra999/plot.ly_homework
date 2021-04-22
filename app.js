@@ -1,13 +1,17 @@
 console.log("app.js loaded!");
 
-// The code in these files is based on Dom's description in office hours.
+// The code for the DrawBargraph and InitDashboard functions are based on Dom's description in office hours.
 
+
+// Function to create the horizontal bar graph.
 function DrawBargraph(sampleId) {
   console.log(`DrawBargraph(${sampleId})`);
 
+  // Read data from the json file
   d3.json("data/samples.json").then(data => {
     // console.log(data);
 
+    // Filter based on sample id values
     var samples = data.samples;
     var resultArray = samples.filter(s => s.id == sampleId);
     // console.log(resultArray);
@@ -19,8 +23,10 @@ function DrawBargraph(sampleId) {
     var sample_values = result.sample_values;
     // console.log(sample_values);
 
+    // Show only the top 10 OTU's in descending order
     yticks = otu_ids.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse();
 
+    // Define the bar graph components
     var barData = {
       x: sample_values.slice(0, 10).reverse(),
       y: yticks,
@@ -29,22 +35,30 @@ function DrawBargraph(sampleId) {
       orientation: "h"
     }
 
+    // Use this data for the bar graph
     var barArray = [barData];
 
+    // Use this layout information for the bar graph
     var barLayout = {
       title: "Top 10 Bacteria Cultures Found",
       margin: {t: 30, 1: 150}
     }
 
+    // This code tells Plotly to make a new bar graph using the data and layout
+    // information above
     Plotly.newPlot("bar", barArray, barLayout)
   });
 }
 
+// Function to create the bubble graph.
 function DrawBubblechart(sampleId) {
   console.log(`DrawBubblechart(${sampleId})`);
+
+  // Read the json file
   d3.json("data/samples.json").then(data => {
     // console.log(data);
 
+    // Filter based on sample id values
     var samples = data.samples;
     var resultArray = samples.filter(s => s.id == sampleId);
     // console.log(resultArray);
@@ -56,6 +70,7 @@ function DrawBubblechart(sampleId) {
     var sample_values = result.sample_values;
     // console.log(sample_values);
 
+    // Define the Bubble graph components
     var bubbleData = {
       x: otu_ids,
       y: sample_values,
@@ -68,8 +83,10 @@ function DrawBubblechart(sampleId) {
  
     };
 
+    // Use this data for the Bubble graph
     var bubbleArray = [bubbleData];
 
+    // Use this layout information for the Bubble graph
     var bubbleLayout = {
       title: 'Bubble Diversity by OTU IDs',
       xaxis: {
@@ -80,10 +97,13 @@ function DrawBubblechart(sampleId) {
       width: 1200
     };
     
+    // This code tells Plotly to make a new bubble graph using the data and layout
+    // information above
     Plotly.newPlot("bubble", bubbleArray, bubbleLayout)
   });
 }
 
+// This function re-draws all the graphs when a new Id is selected in the drop-down
 function optionChanged(newSampleId) {
   console.log(`User selected ${newSampleId}`);
 
@@ -92,17 +112,21 @@ function optionChanged(newSampleId) {
   ShowMetadata(newSampleId);
 }
 
+// Function to display the demographic information.
 function ShowMetadata(sampleId) {
   console.log(`ShowMetadata(${sampleId})`);
 
   // Update the Demographic Info field
   var selector = d3.select("#sample-metadata");
 
+  // Write data to the page
   selector.html("");
 
+  // Read json information
   d3.json("data/samples.json").then(data => {
     console.log(data);
 
+    // Filter by metadata: id
     var metadata = data.metadata;
     var resultArray = metadata.filter(m => m.id == sampleId);
     // console.log(resultArray);
@@ -122,6 +146,8 @@ function ShowMetadata(sampleId) {
   });
 
 }   
+
+// Function for the drop-down selector
 function InitDashboard() {
   // console.log("InitDashboard()");
 
@@ -156,6 +182,8 @@ InitDashboard();
 // Create the gauge for washing frequency
 function showGauge(washingFreq) {
   // console.log("showGauge");
+
+  // Use this data for the gauge
   var data = [
     {
       type: "indicator",
@@ -189,6 +217,7 @@ function showGauge(washingFreq) {
     }
   ];
 
+  // Use this layout for the gauge
   var layout = {
     width: 400,
     height: 300,
@@ -197,6 +226,7 @@ function showGauge(washingFreq) {
     font: { color: "darkblue", family: "Arial" }
   };
 
+  // This code tells Plotly to make a gauge using the data and layout information above
   Plotly.newPlot('gauge', data, layout);
 }
 
