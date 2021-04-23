@@ -18,13 +18,13 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 **Gauge Chart result:**
 
-![Weekly Washing Frequency Gauge](Images/gauge_tv.png)
+![Weekly Washing Frequency Gauge](Images/gauge_tv.PNG)
 
 4. The creation of a bubble chart that displays each sample.
 
 **Bubble Chart result:**
 
-![Bubble Chart](Images/bubble_chart_tv.png)
+![Bubble Chart](Images/bubble_chart_tv.PNG)
 
 5. Creation of a display field to show individual's demographic information.
 
