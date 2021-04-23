@@ -134,17 +134,14 @@ function ShowMetadata(sampleId) {
     var wfreq = result.wfreq;
 
     showGauge(wfreq);
-
-
     console.log(result);
 
-    // Code help from TA Farshad
+    // Code help from TA Farshad to populate table with metadata/demographic information
     Object.entries(result).forEach(([key, value]) => {
-      var item = `${key.toUpperCase()}: ${value}`;
+      var item = `${key}: ${value}`;
       selector.append("h6").text(item);
     });
   });
-
 }   
 
 // Function for the drop-down selector
@@ -189,7 +186,7 @@ function showGauge(washingFreq) {
       type: "indicator",
       mode: "gauge+number",
       value: washingFreq,
-      title: {text: "Belly Button Washing Frequency", font: {size: 24}},
+      title: {text: "Belly Button Washing Frequency <br> Scrubs per Week", font: {size: 20}},
       delta: {reference: 400, increasing: {color: "RebeccaPurple"}},
       gauge: {
         axis: {range: [null, 9], tickwidth: 1, tickcolor: "darkblue"},
@@ -198,15 +195,15 @@ function showGauge(washingFreq) {
         borderwidth: 2,
         bordercolor: "gray",
         steps: [
-          {range: [0, 1], color: "rgba(255, 248, 220, .5)"},
-          {range: [1, 2], color: "rgba(255, 228, 196, .5)"},
-          {range: [2, 3], color: "rgba(222, 184, 135, .5)"},
-          {range: [3, 4], color: "rgba(188, 143, 143, .5)"},
-          {range: [4, 5], color: "rgba(244, 164, 96, .5)"},
-          {range: [5, 6], color: "rgba(218, 165, 32, .5)"},
-          {range: [6, 7], color: "rgba(184, 134, 11, .5)" },
-          {range: [7, 8], color: "rgba(205, 133, 63, .5)" },
-          {range: [8, 9], color: "rgba(210, 105, 30, .5)" },
+          {range: [0, 1], color: "rgba(102, 204, 255, .5)"},
+          {range: [1, 2], color: "rgba(0, 204, 255, .5)"},
+          {range: [2, 3], color: "rgba(0, 153, 153, .5)"},
+          {range: [3, 4], color: "rgba(0, 204, 153, .5)"},
+          {range: [4, 5], color: "rgba(0, 204, 102, .5)"},
+          {range: [5, 6], color: "rgba(51, 204, 51, .5)"},
+          {range: [6, 7], color: "rgba(0, 153, 0, .5)" },
+          {range: [7, 8], color: "rgba(102, 153, 0, .5)" },
+          {range: [8, 9], color: "rgba(102, 102, 51, .5)" },
         ],
         threshold: {
           line: {color: "red", width: 4},
@@ -221,9 +218,9 @@ function showGauge(washingFreq) {
   var layout = {
     width: 400,
     height: 300,
-    margin: { t: 25, r: 25, l: 25, b: 25 },
+    margin: { t: 40, r: 25, l: 25, b: 25 },
     paper_bgcolor: "white",
-    font: { color: "darkblue", family: "Arial" }
+    font: { color: "black", family: "Arial" }
   };
 
   // This code tells Plotly to make a gauge using the data and layout information above
